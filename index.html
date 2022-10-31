@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Crypto MD</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Halant&family=Poppins&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Russo+One&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div class="header">
+    <div class="header__container">
+        <div class="header__logo">
+            <a href="#">
+                <img src="images/Crypto%20MD.png" alt="" class="header__img">
+            </a>
+        </div>
+        <div class="header__rightside">
+            <ul class="header__links">
+                <li><a href="#">Обмен</a></li>
+                <li><a href="#">Контакты</a></li>
+                <li><a href="#">Отзывы</a></li>
+            </ul>
+            <div class="header__button">
+                <button class="headerBtn" id="headerBtn">RU</button>
+            </div>
+        </div>
+    </div>
+</div>
+<marquee class="cards" marquee-speed="fast" behavior="alternate" direction="">
+    <div class="cards__wrap">
+        <div class="card">
+            <div class="card__coin">
+                <div class="card__logo">
+                    <img class="card__img" src="images/Dogecoin.svg" alt="">
+                </div>
+                <div class="card__text">
+                    <div class="card__name">Dogecoin</div>
+                    <div class="card__abbreviation">DOGE</div>
+                </div>
+            </div>
+            <div class="card__price" id="dogecoin"></div>
+            <div class="card__profit" id="doge">
+                <img src="images/Vector_arrow.svg" alt="">
+                <span></span>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card__coin">
+                <div class="card__logo">
+                    <img class="card__img" src="images/Litecoin.svg" alt="">
+                </div>
+                <div class="card__text">
+                    <div class="card__name">Litecoin</div>
+                    <div class="card__abbreviation">LTC</div>
+                </div>
+            </div>
+            <div class="card__price" id="litecoin"></div>
+            <div class="card__profit" id="ltc">
+                <img src="images/Vector_arrow.svg" alt="">
+                <span></span>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card__coin">
+                <div class="card__logo">
+                    <img class="card__img" src="images/Ripple.svg" alt="">
+                </div>
+                <div class="card__text">
+                    <div class="card__name">Ripple</div>
+                    <div class="card__abbreviation">XRP</div>
+                </div>
+            </div>
+            <div class="card__price" id="ripple"></div>
+            <div class="card__profit" id="xrp">
+                <img src="images/Vector_arrow.svg" alt="">
+                <span></span>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card__coin">
+                <div class="card__logo">
+                    <img class="card__img" src="images/Ethereum.svg" alt="">
+                </div>
+                <div class="card__text">
+                    <div class="card__name">Ethereum</div>
+                    <div class="card__abbreviation">ETH</div>
+                </div>
+            </div>
+            <div class="card__price" id="ethereum"></div>
+            <div class="card__profit" id="eth">
+                <img src="images/Vector_arrow.svg" alt="">
+                <span></span>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card__coin">
+                <div class="card__logo">
+                    <img class="card__img" src="images/Tether.svg" alt="">
+                </div>
+                <div class="card__text">
+                    <div class="card__name">Tether</div>
+                    <div class="card__abbreviation">USDT</div>
+                </div>
+            </div>
+            <div class="card__price" id="tether"></div>
+            <div class="card__profit" id="usdt">
+                <img src="images/Vector_arrow.svg" alt="">
+                <span></span>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card__coin">
+                <div class="card__logo">
+                    <img class="card__img" src="images/Binance.svg" alt="">
+                </div>
+                <div class="card__text">
+                    <div class="card__name">Binance Coin</div>
+                    <div class="card__abbreviation">BNB</div>
+                </div>
+            </div>
+            <div class="card__price" id="binancecoin"></div>
+            <div class="card__profit" id="bnb">
+                <img src="images/Vector_arrow.svg" alt="">
+                <span></span>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card__coin">
+                <div class="card__logo">
+                    <img class="card__img" src="images/Bitcoin.svg" alt="">
+                </div>
+                <div class="card__text">
+                    <div class="card__name">Bitcoin</div>
+                    <div class="card__abbreviation">BTC</div>
+                </div>
+            </div>
+            <div class="card__price" id="bitcoin"><span>$</span></div>
+            <div class="card__profit" id="btc">
+                <img src="images/Vector_arrow.svg" alt="">
+                <span></span>
+            </div>
+        </div>
+    </div>
+</marquee>
+<section class="main">
+    <div class="container">
+        <div class="main__text">
+            <div class="main__wrap">
+                <div class="main__subtitle">
+                    в Молдове
+                </div>
+                <img src="images/note.svg" alt="">
+            </div>
+            <div class="main__title">
+                <span>Покупка</span> и <span>продажа</span> криптовалюты <br> за наличные
+            </div>
+        </div>
+        <div class="illustration">
+            <img src="images/Illustration.png" alt="">
+        </div>
+    </div>
+</section>
+<section class="calculator">
+    <div class="calculator__container">
+        <div class="calculator__title">Нужно обменять больше?<a href="#"><img src="images/Telegram.svg" alt=""></a>
+        </div>
+        <div class="calculator__blocks">
+            <div class="calculator__wrapper">
+                <div class="calculator__block">
+                    <div class="calculator__wrap">
+                        <div class="calculator__logo">
+                            <img src="" alt="">
+                        </div>
+                        <div class="calculator__select">
+                            <select name="selectCoin" id="selectCoin">
+                                <option value="1" data-rc="USDT">USDT(TRC 20)</option>
+                                <option value="2" data-rc="ETH">ETH</option>
+                                <option value="3" data-rc="BTC">BTC</option>
+                            </select>
+                        </div>
+                        <div class="calculator__descr">Отдаете</div>
+                    </div>
+                    <div class="calculator__input">
+                        <input id="inputPrice" onkeyup="generatePrice()">
+                    </div>
+                </div>
+                <div class="calculator__reverseBtn"><button id="reverseBtn"><img src="images/swap%20button.svg" alt=""></button></div>
+                <div class="calculator__block">
+                    <div class="calculator__wrap">
+                        <div class="calculator__logo">
+
+                        </div>
+                        <div class="calculator__select">
+                            <select name="selectPrice" id="selectPrice">
+                                <option value="1" data-cc="USD" >USD</option>
+                                <option value="2" data-cc="EUR">EUR</option>
+                                <option value="3" data-cc="RUB">RUB</option>
+                            </select>
+                        </div>
+                        <div class="calculator__descr">Получаете</div>
+                    </div>
+                    <div class="calculator__total" id="total">
+
+                    </div>
+                </div>
+            </div>
+            <div class="calculator__button">
+                <button id="tradeButton">Обменять</button>
+            </div>
+        </div>
+    </div>
+</section>
+</body>
+<script src="js/main.js"></script>
+</html>
