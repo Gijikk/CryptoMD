@@ -24,11 +24,12 @@ let USDTPrice = []
 let BNBPrice = []
 let BTCPrice = []
 // 2. GET-запрос по URL
-xhr.open('GET', `https://min-api.cryptocompare.com/data/pricemultifull?fsyms=DOGE,LTC,XRP,ETH,USDT,BNB,BTC&tsyms=USD,EUR,LEI,RUB&api_key=7c4f046f5ac744e7320d07f6d7de63eba244235fdfa603cee7bea30d41524829`, true);
+xhr.open('GET', `https://min-api.cryptocompare.com/data/pricemultifull?fsyms=DOGE,LTC,XRP,ETH,USDT,BNB,BTC&tsyms=USD,EUR,MDL,RUB&api_key=7c4f046f5ac744e7320d07f6d7de63eba244235fdfa603cee7bea30d41524829`, true);
 xhr.onload = () => {
     var rc = 'USDT'
     var сc = 'USD'
     cryptoPrice = JSON.parse(xhr.response)
+    console.dir(cryptoPrice)
     var res = cryptoPrice.RAW.USDT.USD.PRICE
     if(detector3 === false) {
         cryptoValue.valute = res
@@ -126,41 +127,76 @@ xhr.onload = () => {
     }
     selectPrice.onchange = function(event){
         if (event) {
-            cc = event.target.options[event.target.selectedIndex].dataset.cc;
+            vc = event.target.options[event.target.selectedIndex].dataset.vc;
             detector = true
-        } else cc = 'USD'
-        if (rc === 'USDT' && cc === 'USD') {
+        } else vc = 'USD'
+        if (rc === 'USDT' && vc === 'USD') {
             res = cryptoPrice.RAW.USDT.USD.PRICE
+            coin.innerHTML = `<img src=\"images/${rc}.svg\" alt=\"\">`
+            valut.innerHTML = `<img src=\"images/${vc}.svg\" alt=\"\">`
 
         }
-        if (rc === 'ETH' && cc === 'USD') {
+        if (rc === 'ETH' && vc === 'USD') {
             res = cryptoPrice.RAW.ETH.USD.PRICE
+            coin.innerHTML = `<img src=\"images/${rc}.svg\" alt=\"\">`
+            valut.innerHTML = `<img src=\"images/${vc}.svg\" alt=\"\">`
         }
-        if (rc === 'BTC' && cc === 'USD') {
+        if (rc === 'BTC' && vc === 'USD') {
             res = cryptoPrice.RAW.BTC.USD.PRICE
+            coin.innerHTML = `<img src=\"images/${rc}.svg\" alt=\"\">`
+            valut.innerHTML = `<img src=\"images/${vc}.svg\" alt=\"\">`
         }
 
 
-        if (rc === 'USDT' && cc === 'EUR') {
+        if (rc === 'USDT' && vc === 'EUR') {
             res = cryptoPrice.RAW.USDT.EUR.PRICE
+            coin.innerHTML = `<img src=\"images/${rc}.svg\" alt=\"\">`
+            valut.innerHTML = `<img src=\"images/${vc}.svg\" alt=\"\">`
         }
-        if (rc === 'ETH' && cc === 'EUR') {
+        if (rc === 'ETH' && vc === 'EUR') {
             res = cryptoPrice.RAW.ETH.EUR.PRICE
+            coin.innerHTML = `<img src=\"images/${rc}.svg\" alt=\"\">`
+            valut.innerHTML = `<img src=\"images/${vc}.svg\" alt=\"\">`
         }
-        if (rc === 'BTC' && cc === 'EUR') {
+        if (rc === 'BTC' && vc === 'EUR') {
             res = cryptoPrice.RAW.BTC.EUR.PRICE
+            coin.innerHTML = `<img src=\"images/${rc}.svg\" alt=\"\">`
+            valut.innerHTML = `<img src=\"images/${vc}.svg\" alt=\"\">`
         }
 
 
 
-        if (rc === 'USDT' && cc === 'RUB') {
+        if (rc === 'USDT' && vc === 'RUB') {
             res = cryptoPrice.RAW.USDT.RUB.PRICE
+            coin.innerHTML = `<img src=\"images/${rc}.svg\" alt=\"\">`
+            valut.innerHTML = `<img src=\"images/${vc}.svg\" alt=\"\">`
         }
-        if (rc === 'ETH' && cc === 'RUB') {
+        if (rc === 'ETH' && vc === 'RUB') {
             res = cryptoPrice.RAW.ETH.RUB.PRICE
+            coin.innerHTML = `<img src=\"images/${rc}.svg\" alt=\"\">`
+            valut.innerHTML = `<img src=\"images/${vc}.svg\" alt=\"\">`
         }
-        if (rc === 'BTC' && cc === 'RUB') {
+        if (rc === 'BTC' && vc === 'RUB') {
             res = cryptoPrice.RAW.BTC.RUB.PRICE
+            coin.innerHTML = `<img src=\"images/${rc}.svg\" alt=\"\">`
+            valut.innerHTML = `<img src=\"images/${vc}.svg\" alt=\"\">`
+        }
+
+
+        if (rc === 'USDT' && vc === 'LEI') {
+            res = cryptoPrice.RAW.USDT.MDL.PRICE
+            coin.innerHTML = `<img src=\"images/${rc}.svg\" alt=\"\">`
+            valut.innerHTML = `<img src=\"images/${vc}.svg\" alt=\"\">`
+        }
+        if (rc === 'ETH' && vc === 'LEI') {
+            res = cryptoPrice.RAW.ETH.MDL.PRICE
+            coin.innerHTML = `<img src=\"images/${rc}.svg\" alt=\"\">`
+            valut.innerHTML = `<img src=\"images/${vc}.svg\" alt=\"\">`
+        }
+        if (rc === 'BTC' && vc === 'LEI') {
+            res = cryptoPrice.RAW.BTC.MDL.PRICE
+            coin.innerHTML = `<img src=\"images/${rc}.svg\" alt=\"\">`
+            valut.innerHTML = `<img src=\"images/${vc}.svg\" alt=\"\">`
         }
 
 
@@ -178,42 +214,77 @@ xhr.onload = () => {
         } else rc = 'USDT'
 
         if(detector === false) {
-            cc = 'USD'
+            vc = 'USD'
         }
         if(detector2 === false) {
             rc = 'USDT'
         }
-        if (rc === 'USDT' && cc === 'USD') {
+        if (rc === 'USDT' && vc === 'USD') {
             res = cryptoPrice.RAW.USDT.USD.PRICE
+            coin.innerHTML = `<img src=\"images/${rc}.svg\" alt=\"\">`
+            valut.innerHTML = `<img src=\"images/${vc}.svg\" alt=\"\">`
         }
-        if (rc === 'ETH' && cc === 'USD') {
+        if (rc === 'ETH' && vc === 'USD') {
             res = cryptoPrice.RAW.ETH.USD.PRICE
+            coin.innerHTML = `<img src=\"images/${rc}.svg\" alt=\"\">`
+            valut.innerHTML = `<img src=\"images/${vc}.svg\" alt=\"\">`
         }
-        if (rc === 'BTC' && cc === 'USD') {
+        if (rc === 'BTC' && vc === 'USD') {
             res = cryptoPrice.RAW.BTC.USD.PRICE
+            coin.innerHTML = `<img src=\"images/${rc}.svg\" alt=\"\">`
+            valut.innerHTML = `<img src=\"images/${vc}.svg\" alt=\"\">`
         }
 
 
-        if (rc === 'USDT' && cc === 'EUR') {
+        if (rc === 'USDT' && vc === 'EUR') {
             res = cryptoPrice.RAW.USDT.EUR.PRICE
+            coin.innerHTML = `<img src=\"images/${rc}.svg\" alt=\"\">`
+            valut.innerHTML = `<img src=\"images/${vc}.svg\" alt=\"\">`
         }
-        if (rc === 'ETH' && cc === 'EUR') {
+        if (rc === 'ETH' && vc === 'EUR') {
             res = cryptoPrice.RAW.ETH.EUR.PRICE
+            coin.innerHTML = `<img src=\"images/${rc}.svg\" alt=\"\">`
+            valut.innerHTML = `<img src=\"images/${vc}.svg\" alt=\"\">`
         }
-        if (rc === 'BTC' && cc === 'EUR') {
+        if (rc === 'BTC' && vc === 'EUR') {
             res = cryptoPrice.RAW.BTC.EUR.PRICE
+            coin.innerHTML = `<img src=\"images/${rc}.svg\" alt=\"\">`
+            valut.innerHTML = `<img src=\"images/${vc}.svg\" alt=\"\">`
         }
 
 
 
-        if (rc === 'USDT' && cc === 'RUB') {
+        if (rc === 'USDT' && vc === 'RUB') {
             res = cryptoPrice.RAW.USDT.RUB.PRICE
+            coin.innerHTML = `<img src=\"images/${rc}.svg\" alt=\"\">`
+            valut.innerHTML = `<img src=\"images/${vc}.svg\" alt=\"\">`
         }
-        if (rc === 'ETH' && cc === 'RUB') {
+        if (rc === 'ETH' && vc === 'RUB') {
             res = cryptoPrice.RAW.ETH.RUB.PRICE
+            coin.innerHTML = `<img src=\"images/${rc}.svg\" alt=\"\">`
+            valut.innerHTML = `<img src=\"images/${vc}.svg\" alt=\"\">`
         }
-        if (rc === 'BTC' && cc === 'RUB') {
+        if (rc === 'BTC' && vc === 'RUB') {
             res = cryptoPrice.RAW.BTC.RUB.PRICE
+            coin.innerHTML = `<img src=\"images/${rc}.svg\" alt=\"\">`
+            valut.innerHTML = `<img src=\"images/${vc}.svg\" alt=\"\">`
+        }
+
+
+        if (rc === 'USDT' && vc === 'LEI') {
+            res = cryptoPrice.RAW.USDT.MDL.PRICE
+            coin.innerHTML = `<img src=\"images/${rc}.svg\" alt=\"\">`
+            valut.innerHTML = `<img src=\"images/${vc}.svg\" alt=\"\">`
+        }
+        if (rc === 'ETH' && vc === 'LEI') {
+            res = cryptoPrice.RAW.ETH.MDL.PRICE
+            coin.innerHTML = `<img src=\"images/${rc}.svg\" alt=\"\">`
+            valut.innerHTML = `<img src=\"images/${vc}.svg\" alt=\"\">`
+        }
+        if (rc === 'BTC' && vc === 'LEI') {
+            res = cryptoPrice.RAW.BTC.MDL.PRICE
+            coin.innerHTML = `<img src=\"images/${rc}.svg\" alt=\"\">`
+            valut.innerHTML = `<img src=\"images/${vc}.svg\" alt=\"\">`
         }
 
 
