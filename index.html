@@ -195,7 +195,7 @@
                         </div>
                         <div class="calculator__select">
                             <select name="selectPriceSwap" id="selectPriceSwap">
-                                <option value="1" data-vc="USD" >USD</option>
+                                <option value="1" data-vc="USD">USD</option>
                                 <option value="2" data-vc="EUR">EUR</option>
                                 <option value="2" data-vc="MDL">LEI</option>
                                 <option value="3" data-vc="RUB">RUB</option>
@@ -207,7 +207,9 @@
                         <input id="inputPriceSwap" onkeyup="generatePriceSwap()">
                     </div>
                 </div>
-                <div class="calculator__reverseBtn" id="reverseBtn"><button><img src="images/swap%20button.svg" alt=""></button></div>
+                <div class="calculator__reverseBtn" id="reverseBtn">
+                    <button><img src="images/swap%20button.svg" alt=""></button>
+                </div>
                 <div id="sprice" class="calculator__block">
                     <div class="calculator__wrap">
                         <div class="calculator__logo" id="valut">
@@ -215,7 +217,7 @@
                         </div>
                         <div class="calculator__select">
                             <select name="selectPrice" id="selectPrice">
-                                <option value="1" data-vc="USD" >USD</option>
+                                <option value="1" data-vc="USD">USD</option>
                                 <option value="2" data-vc="EUR">EUR</option>
                                 <option value="2" data-vc="MDL">LEI</option>
                                 <option value="3" data-vc="RUB">RUB</option>
@@ -247,11 +249,100 @@
                 </div>
             </div>
             <div class="calculator__button">
-                <button id="tradeButton">Обменять</button>
+                <button id="tradeButton" class="open-popup">Обменять</button>
             </div>
         </div>
     </div>
 </section>
+
+<div class="popup__bg">
+    <form class="popup" action="https://formspree.io/f/xoqbprev"
+          method="POST">
+        <div class="close-popup"></div>
+        <div class="popup__cost" id="popupCost"></div>
+        <hr>
+        <div class="popup__title">Получение:</div>
+        <div class="popup__checkboxes">
+            <label>
+                <input type="checkbox" id="checkUSD">
+                <div class="label__text">USD</div>
+            </label>
+            <label>
+                <input type="checkbox" id="checkEUR">
+                <div class="label__text">EUR</div>
+            </label>
+            <label>
+                <input type="checkbox" id="checkLEI">
+                <div class="label__text">LEI</div>
+            </label>
+            <label>
+                <input type="checkbox" id="checkCash">
+                <div class="label__text">Cash</div>
+            </label>
+            <label>
+                <input type="checkbox" id="checkCard">
+                <div class="label__text">Card</div>
+            </label>
+        </div>
+        <hr>
+        <div class="popup__inputs">
+            <label class="labelText">
+                <div class="label__text">
+                    Ваше имя
+                </div>
+                <input id="person" type="text" name="name" placeholder="Dorin">
+            </label>
+            <label class="labelText">
+                <div class="label__text">
+                    email
+                </div>
+                <input id="mail" name="mail" placeholder="Dorin">
+            </label>
+            <label class="labelText">
+                <div class="label__text">
+                    city
+                </div>
+                <input id="city" name="city" placeholder="Dorin">
+            </label>
+            <select name="selectForm" id="selectForm">
+                <option value="Telegram">Telegram</option>
+                <option value="Viber">Viber</option>
+                <option value="WhatsApp">WhatsApp</option>
+            </select>
+            <label class="labelText">
+                <div class="label__text">
+                    ⠀
+                </div>
+                <input id="tel" type="tel" name="tel" placeholder="Dorin">
+            </label>
+        </div>
+        <label id="checkboxData">
+            <input type="checkbox" id="check">
+            <div class="label__text">Не запоминать введенные данные</div>
+        </label>
+        <p class="p">
+            Для совершения обмена Вам необходимо создать заявку на нашем сайте. Обязательно указывайте Ваш действующий
+            адрес электронноой почты и контактный номер телефона при создании заявки. Данная операция проводится в
+            ручноом режиме, не меньше второго подтверждения в сети blockchain.
+        </p>
+        <p class="p">
+            Внимание!<br><br>
+            Курс обмена не фиксируется при подаче заявки и может отличаться от курса в заявке. Курс будет зафиксирован
+            на момент второго подтверждения в сети Blockchain, сумма к получению будет изменена пропорционально
+            изменению курса по бирже Binance. При этом комиссия обменного пункта в процентах зафиксирована на момент
+            создания заявки.
+            Если заявка не оплачена, в течении 30 минут она автоматически получает статус удаленной. Если Вы оплатили
+            заявку, и она получила статус удаленной, обратитесь в поддержку, чтобы восстановить ее.
+        </p>
+        <button id="sendBtn" type="submit">Отправить</button>
+        <textarea id="message" name="message"></textarea>
+        <input id="mainEmail" type="email" name="email" value="guruchannel21@gmail.com">
+    </form>
+</div>
+
+
+
+
 </body>
 <script src="js/main.js"></script>
 </html>
