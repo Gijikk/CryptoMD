@@ -472,7 +472,7 @@ marquee {
   padding: 4px;
   width: 64px;
   height: 24px;
-  background: #BAFD02;
+  background: #bafd02;
   border-radius: 4px;
   display: flex;
   justify-content: flex-start;
@@ -557,7 +557,7 @@ marquee {
   color: white;
 }
 .main__title span {
-  color: #BAFD02;
+  color: #bafd02;
 }
 
 .calculator__container {
@@ -602,7 +602,7 @@ marquee {
   border-radius: 8px;
   width: 96px;
   height: 96px;
-  background: #BAFD02;
+  background: #bafd02;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -679,7 +679,7 @@ marquee {
   align-items: center;
   padding: 16px 64px;
   height: 72px;
-  background: #BAFD02;
+  background: #bafd02;
   border-radius: 8px;
   font-family: "Russo One";
   font-style: normal;
@@ -751,7 +751,7 @@ marquee {
   width: fit-content;
 }
 .contacts__text .contacts__title span {
-  color: #BAFD02;
+  color: #bafd02;
 }
 .contacts__text .contacts__subtitle {
   font-family: "Inter";
@@ -780,11 +780,11 @@ marquee {
   width: 215px;
   height: 226px;
   background: #1F1F1F;
-  border: 1px solid #BAFD02;
+  border: 1px solid #bafd02;
   border-radius: 8px;
 }
 .contacts__messenger:nth-child(2) {
-  background: #BAFD02;
+  background: #bafd02;
   width: 301px;
   height: 286px;
 }
@@ -793,7 +793,7 @@ marquee {
 }
 .contacts__messenger:nth-child(2) a {
   background: #1F1F1F;
-  color: #BAFD02;
+  color: #bafd02;
 }
 .contacts__messenger img {
   margin-bottom: 8px;
@@ -806,7 +806,7 @@ marquee {
   align-items: center;
   padding: 16px 32px;
   gap: 10px;
-  background: #BAFD02;
+  background: #bafd02;
   border-radius: 8px;
   font-family: "Inter";
   font-style: normal;
@@ -826,6 +826,14 @@ marquee {
   align-items: center;
   letter-spacing: -0.02em;
   color: #FFFFFF;
+}
+
+#scoinSwap {
+  display: none;
+}
+
+#spriceSwap {
+  display: none;
 }
 
 /*# sourceMappingURL=style.css.map */

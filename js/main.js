@@ -2,17 +2,33 @@ document.querySelector('.header__button').addEventListener('click', function () 
     document.querySelector('.header__button').classList.toggle('headerBtn-active');
     if(document.querySelector('.header__button').classList.contains('headerBtn-active')) {
         headerBtn.innerText = 'RO'
+        headerBtn.style.background = 'white'
     } else {
         headerBtn.innerText = 'RU'
+        headerBtn.style.background = '#BAFD02FF'
     }
 
 })
-var detector = false
-var detector2 = false
-var detector3 = false
+var selectCoin = document.getElementById('selectCoin')
+var selectPrice = document.getElementById('selectPrice')
+var selectCoinSwap = document.getElementById('selectCoinSwap')
+var selectPriceSwap = document.getElementById('selectPriceSwap')
+var reverseBtn = document.querySelector('.calculator__reverseBtn')
+
+var rc = selectCoin.options[selectCoin.selectedIndex].dataset.rc;
+console.log('RC: ', rc)
+var vc = selectPrice.options[selectPrice.selectedIndex].dataset.vc;
+console.log('RC: ', vc)
+var rcSwap = selectCoinSwap.options[selectCoinSwap.selectedIndex].dataset.rc;
+console.log('RCSwap: ', vcSwap)
+var vcSwap = selectPriceSwap.options[selectPriceSwap.selectedIndex].dataset.vc;
+console.log('RCSwap: ', vcSwap)
 var cryptoValue = {
 
 }
+var detector = false
+
+
 
 // 1. Создаём новый XMLHttpRequest-объект
 let xhr = new XMLHttpRequest();
@@ -26,283 +42,164 @@ let BTCPrice = []
 // 2. GET-запрос по URL
 xhr.open('GET', `https://min-api.cryptocompare.com/data/pricemultifull?fsyms=DOGE,LTC,XRP,ETH,USDT,BNB,BTC&tsyms=USD,EUR,MDL,RUB&api_key=7c4f046f5ac744e7320d07f6d7de63eba244235fdfa603cee7bea30d41524829`, true);
 xhr.onload = () => {
-    var rc = 'USDT'
-    var сc = 'USD'
+    reverseBtn.addEventListener('click', function () {
+        reverseBtn.classList.toggle('reverseBtn-active');
+        rcSwap = rc;
+        vcSwap = vc;
+        inputPriceSwap.value = parseFloat(res * inputPrice.value)
+        document.getElementById('totalSwap').innerHTML=parseFloat(inputPriceSwap.value / resSwap)
+        console.log('rcSwap', rcSwap);
+        console.log('vcSwap', vcSwap)
+        generatePriceSwap()
+        generatePrice()
+        if(reverseBtn.classList.contains('reverseBtn-active')) {
+            console.log('rcSwap0', rcSwap);
+            console.log('vcSwap0', vcSwap)
+            // selectCoinSwap.options[selectCoinSwap.selectedIndex].dataset.rc = rcSwap;
+            // selectPriceSwap.options[selectPriceSwap.selectedIndex].dataset.vc = vcSwap;
+            // console.log('1', selectCoinSwap.options[selectCoinSwap.selectedIndex].dataset.rc)
+            // console.log('2', selectPriceSwap.options[selectPriceSwap.selectedIndex].dataset.vc)
+            scoinSwap.style.display = "block";
+            spriceSwap.style.display = "block";
+            scoin.style.display = "none";
+            sprice.style.display = "none";
+            inputPriceSwap.value = parseFloat(res * inputPrice.value)
+            document.getElementById('totalSwap').innerHTML=parseFloat(inputPriceSwap.value / resSwap)
+            console.log('rcSwap1', rcSwap);
+            console.log('vcSwap1', vcSwap)
+            detector = true;
+
+        }
+        else {
+            rc = selectCoin.options[selectCoin.selectedIndex].dataset.rc;
+            vc = selectPrice.options[selectPrice.selectedIndex].dataset.vc;
+            scoin.style.display = "block";
+            sprice.style.display = "block";
+            scoinSwap.style.display = "none";
+            spriceSwap.style.display = "none";
+            inputPrice.value = parseFloat(inputPriceSwap.value / resSwap)
+            document.getElementById('total').innerHTML=parseFloat(res * inputPrice.value)
+            detector = false;
+        }
+    })
     cryptoPrice = JSON.parse(xhr.response)
     console.dir(cryptoPrice)
-    var res = cryptoPrice.RAW.USDT.USD.PRICE
-    if(detector3 === false) {
-        cryptoValue.valute = res
-    }
-    DOGEPrice.push(cryptoPrice.RAW.DOGE.USD.PRICE);
-    DOGEPrice.push(String(cryptoPrice.RAW.DOGE.USD.CHANGEPCT24HOUR.toFixed(1)))
-    console.log('DOGE: ', cryptoPrice.RAW.DOGE.USD.PRICE)
-    dogecoin.innerHTML = `$${DOGEPrice[0]}`
-    if (DOGEPrice[1][0] === '-') {
-        doge.innerHTML = `<img class="low-arrow" src="images/Vector_arrow.svg" alt="">
-            <span>${DOGEPrice[1]}%</span>`
-        doge.style.background = 'red'
-    } else {
-        doge.innerHTML = `<img src="images/Vector_arrow.svg" alt="">
-            <span>+${DOGEPrice[1]}%</span>`
-    }
-    //
-    LTCPrice.push(cryptoPrice.RAW.LTC.USD.PRICE);
-    LTCPrice.push(String(cryptoPrice.RAW.LTC.USD.CHANGEPCT24HOUR.toFixed(1)))
-    console.log('LTC: ', cryptoPrice.RAW.LTC.USD.PRICE)
-    litecoin.innerHTML = `$${LTCPrice[0]}`
-    if (LTCPrice[1][0] === '-') {
-        ltc.innerHTML = `<img class="low-arrow" src="images/Vector_arrow.svg" alt="">
-            <span>${LTCPrice[1]}%</span>`
-        ltc.style.background = 'red'
-    } else {
-        ltc.innerHTML = `<img src="images/Vector_arrow.svg" alt="">
-            <span>+${LTCPrice[1]}%</span>`
-    }
-    //
-    XRPPrice.push(cryptoPrice.RAW.XRP.USD.PRICE);
-    XRPPrice.push(String(cryptoPrice.RAW.XRP.USD.CHANGEPCT24HOUR.toFixed(1)))
-    console.log('XRP: ', cryptoPrice.RAW.XRP.USD.PRICE)
-    ripple.innerHTML = `$${XRPPrice[0]}`
-    if (XRPPrice[1][0] === '-') {
-        xrp.innerHTML = `<img class="low-arrow" src="images/Vector_arrow.svg" alt="">
-            <span>${XRPPrice[1]}%</span>`
-        xrp.style.background = 'red'
-    } else {
-        xrp.innerHTML = `<img src="images/Vector_arrow.svg" alt="">
-            <span>+${XRPPrice[1]}%</span>`
-    }
-    //
-    ETHPrice.push(cryptoPrice.RAW.ETH.USD.PRICE);
-    ETHPrice.push(String(cryptoPrice.RAW.ETH.USD.CHANGEPCT24HOUR.toFixed(1)))
-    console.log('ETH: ', cryptoPrice.RAW.ETH.USD.PRICE)
-    ethereum.innerHTML = `$${ETHPrice[0]}`
-    if (ETHPrice[1][0] === '-') {
-        eth.innerHTML = `<img class="low-arrow" src="images/Vector_arrow.svg" alt="">
-            <span>${ETHPrice[1]}%</span>`
-        eth.style.background = 'red'
-    } else {
-        eth.innerHTML = `<img src="images/Vector_arrow.svg" alt="">
-            <span>+${ETHPrice[1]}%</span>`
-    }
-    //
-    USDTPrice.push(cryptoPrice.RAW.USDT.USD.PRICE);
-    USDTPrice.push(String(cryptoPrice.RAW.USDT.USD.CHANGEPCT24HOUR.toFixed(1)))
-    console.log('USDT: ', cryptoPrice.RAW.USDT.USD.PRICE)
-    tether.innerHTML = `$${USDTPrice[0]}`
-    if (USDTPrice[1][0] === '-') {
-        usdt.innerHTML = `<img class="low-arrow" src="images/Vector_arrow.svg" alt="">
-            <span>${USDTPrice[1]}%</span>`
-        usdt.style.background = 'red'
-    } else {
-        usdt.innerHTML = `<img src="images/Vector_arrow.svg" alt="">
-            <span>+${USDTPrice[1]}%</span>`
-    }
-    //
-    BNBPrice.push(cryptoPrice.RAW.BNB.USD.PRICE);
-    BNBPrice.push(String(cryptoPrice.RAW.BNB.USD.CHANGEPCT24HOUR.toFixed(1)))
-    console.log('BNB: ', cryptoPrice.RAW.BNB.USD.PRICE)
+    // var res = cryptoPrice.RAW.USDT.USD.PRICE;
 
-    binancecoin.innerHTML = `$${BNBPrice[0]}`
-    if (BNBPrice[1][0] === '-') {
-        bnb.innerHTML = `<img class="low-arrow" src="images/Vector_arrow.svg" alt="">
-            <span>${BNBPrice[1]}%</span>`
-        bnb.style.background = 'red'
-    } else {
-        bnb.innerHTML = `<img src="images/Vector_arrow.svg" alt="">
-            <span>+${BNBPrice[1]}%</span>`
+
+    function cryptoCard(mas, coinName, htmlID, htmlID2) {
+        mas.push(cryptoPrice["RAW"][`${coinName}`]["USD"]["PRICE"])
+        mas.push(String(cryptoPrice["RAW"][`${coinName}`]["USD"]["CHANGEPCT24HOUR"].toFixed(1)))
+        console.log(`${coinName}: `, cryptoPrice["RAW"][`${coinName}`]["USD"]["PRICE"])
+        htmlID.innerHTML = `$${mas[0]}`
+        if (mas[1][0] === '-') {
+            htmlID2.innerHTML = `<img class="low-arrow" src="images/Vector_arrow.svg" alt="">
+            <span>${mas[1]}%</span>`
+            htmlID2.style.background = 'red'
+        } else {
+            htmlID2.innerHTML = `<img src="images/Vector_arrow.svg" alt="">
+            <span>+${mas[1]}%</span>`
+        }
     }
-    //
-    BTCPrice.push(cryptoPrice.RAW.BTC.USD.PRICE);
-    BTCPrice.push(String(cryptoPrice.RAW.BTC.USD.CHANGEPCT24HOUR.toFixed(1)))
-    console.log('BTC: ', cryptoPrice.RAW.BTC.USD.PRICE)
-    bitcoin.innerHTML = `$${BTCPrice[0]}`
-    if (BTCPrice[1][0] === '-') {
-        btc.innerHTML = `<img class="low-arrow" src="images/Vector_arrow.svg" alt="">
-            <span>${BTCPrice[1]}%</span>`
-        btc.style.background = 'red'
-    } else {
-        btc.innerHTML = `<img src="images/Vector_arrow.svg" alt="">
-            <span>+${BTCPrice[1]}%</span>`
+
+    function setResult(rcc, vcc) {
+        res = cryptoPrice["RAW"][`${rcc}`][`${vcc}`]["PRICE"]
+        coin.innerHTML = `<img src=\"images/${rcc}.svg\" alt=\"\">`
+        valut.innerHTML = `<img src=\"images/${vcc}.svg\" alt=\"\">`
+        return res
     }
+    // function setResultSwap(rcc, vcc) {
+    //     resSwap = cryptoPrice["RAW"][`${rcc}`][`${vcc}`]["PRICE"]
+    //     coinSwap.innerHTML = `<img src=\"images/${rcc}.svg\" alt=\"\">`
+    //     valutSwap.innerHTML = `<img src=\"images/${vcc}.svg\" alt=\"\">`
+    //     return resSwap
+    // }
+    console.log('rcSwap: ', rcSwap)
+    console.log('vcSwap: ', vcSwap)
+    console.log('setResult:', setResult(rc, vc))
+    console.log('setResultSwap:', setResultSwap(rcSwap, vcSwap))
+
+    res = setResult(rc, vc)
+    resSwap = setResultSwap(rcSwap, vcSwap)
+
+
+
+    cryptoCard(DOGEPrice, 'DOGE', dogecoin, doge)
+    cryptoCard(LTCPrice, 'LTC', litecoin, ltc)
+    cryptoCard(XRPPrice, 'XRP', ripple, xrp)
+    cryptoCard(ETHPrice, 'ETH', ethereum, eth)
+    cryptoCard(USDTPrice, 'USDT', tether, usdt)
+    cryptoCard(BNBPrice, 'BNB', binancecoin, bnb)
+    cryptoCard(BTCPrice, 'BTC', bitcoin, btc)
+
+    ///////////////////////////////////////////////////////////////
+    ///////////////////////////////////////////////////////////////
+    ///////////////////////////////////////////////////////////////
+    ///////////////////////////////////////////////////////////////
+    ///////////////////////////////////////////////////////////////
     selectPrice.onchange = function(event){
         if (event) {
             vc = event.target.options[event.target.selectedIndex].dataset.vc;
-            detector = true
-        } else vc = 'USD'
-        if (rc === 'USDT' && vc === 'USD') {
-            res = cryptoPrice.RAW.USDT.USD.PRICE
-            coin.innerHTML = `<img src=\"images/${rc}.svg\" alt=\"\">`
-            valut.innerHTML = `<img src=\"images/${vc}.svg\" alt=\"\">`
-
+        } else {
+            vc = selectPrice.options[selectPrice.selectedIndex].dataset.vc;
         }
-        if (rc === 'ETH' && vc === 'USD') {
-            res = cryptoPrice.RAW.ETH.USD.PRICE
-            coin.innerHTML = `<img src=\"images/${rc}.svg\" alt=\"\">`
-            valut.innerHTML = `<img src=\"images/${vc}.svg\" alt=\"\">`
-        }
-        if (rc === 'BTC' && vc === 'USD') {
-            res = cryptoPrice.RAW.BTC.USD.PRICE
-            coin.innerHTML = `<img src=\"images/${rc}.svg\" alt=\"\">`
-            valut.innerHTML = `<img src=\"images/${vc}.svg\" alt=\"\">`
-        }
-
-
-        if (rc === 'USDT' && vc === 'EUR') {
-            res = cryptoPrice.RAW.USDT.EUR.PRICE
-            coin.innerHTML = `<img src=\"images/${rc}.svg\" alt=\"\">`
-            valut.innerHTML = `<img src=\"images/${vc}.svg\" alt=\"\">`
-        }
-        if (rc === 'ETH' && vc === 'EUR') {
-            res = cryptoPrice.RAW.ETH.EUR.PRICE
-            coin.innerHTML = `<img src=\"images/${rc}.svg\" alt=\"\">`
-            valut.innerHTML = `<img src=\"images/${vc}.svg\" alt=\"\">`
-        }
-        if (rc === 'BTC' && vc === 'EUR') {
-            res = cryptoPrice.RAW.BTC.EUR.PRICE
-            coin.innerHTML = `<img src=\"images/${rc}.svg\" alt=\"\">`
-            valut.innerHTML = `<img src=\"images/${vc}.svg\" alt=\"\">`
-        }
-
-
-
-        if (rc === 'USDT' && vc === 'RUB') {
-            res = cryptoPrice.RAW.USDT.RUB.PRICE
-            coin.innerHTML = `<img src=\"images/${rc}.svg\" alt=\"\">`
-            valut.innerHTML = `<img src=\"images/${vc}.svg\" alt=\"\">`
-        }
-        if (rc === 'ETH' && vc === 'RUB') {
-            res = cryptoPrice.RAW.ETH.RUB.PRICE
-            coin.innerHTML = `<img src=\"images/${rc}.svg\" alt=\"\">`
-            valut.innerHTML = `<img src=\"images/${vc}.svg\" alt=\"\">`
-        }
-        if (rc === 'BTC' && vc === 'RUB') {
-            res = cryptoPrice.RAW.BTC.RUB.PRICE
-            coin.innerHTML = `<img src=\"images/${rc}.svg\" alt=\"\">`
-            valut.innerHTML = `<img src=\"images/${vc}.svg\" alt=\"\">`
-        }
-
-
-        if (rc === 'USDT' && vc === 'LEI') {
-            res = cryptoPrice.RAW.USDT.MDL.PRICE
-            coin.innerHTML = `<img src=\"images/${rc}.svg\" alt=\"\">`
-            valut.innerHTML = `<img src=\"images/${vc}.svg\" alt=\"\">`
-        }
-        if (rc === 'ETH' && vc === 'LEI') {
-            res = cryptoPrice.RAW.ETH.MDL.PRICE
-            coin.innerHTML = `<img src=\"images/${rc}.svg\" alt=\"\">`
-            valut.innerHTML = `<img src=\"images/${vc}.svg\" alt=\"\">`
-        }
-        if (rc === 'BTC' && vc === 'LEI') {
-            res = cryptoPrice.RAW.BTC.MDL.PRICE
-            coin.innerHTML = `<img src=\"images/${rc}.svg\" alt=\"\">`
-            valut.innerHTML = `<img src=\"images/${vc}.svg\" alt=\"\">`
-        }
-
-
+        res = setResult(rc, vc)
+        document.getElementById('total').innerHTML=parseFloat(res * inputPrice.value)
         console.log('res: ', res)
-        detector3 = true
         cryptoValue.valute = res
         console.log("rc :", rc)
-        console.log("сc :", сc)
-        document.getElementById('total').innerHTML=parseFloat(cryptoValue.valute * inputPrice.value)
+        console.log("сc :", vc)
     };
     selectCoin.onchange = function(event){
         if (event) {
             rc = event.target.options[event.target.selectedIndex].dataset.rc;
-            detector2 = true
-        } else rc = 'USDT'
-
-        if(detector === false) {
-            vc = 'USD'
+        } else {
+            rc = selectCoin.options[selectCoin.selectedIndex].dataset.rc;
         }
-        if(detector2 === false) {
-            rc = 'USDT'
-        }
-        if (rc === 'USDT' && vc === 'USD') {
-            res = cryptoPrice.RAW.USDT.USD.PRICE
-            coin.innerHTML = `<img src=\"images/${rc}.svg\" alt=\"\">`
-            valut.innerHTML = `<img src=\"images/${vc}.svg\" alt=\"\">`
-        }
-        if (rc === 'ETH' && vc === 'USD') {
-            res = cryptoPrice.RAW.ETH.USD.PRICE
-            coin.innerHTML = `<img src=\"images/${rc}.svg\" alt=\"\">`
-            valut.innerHTML = `<img src=\"images/${vc}.svg\" alt=\"\">`
-        }
-        if (rc === 'BTC' && vc === 'USD') {
-            res = cryptoPrice.RAW.BTC.USD.PRICE
-            coin.innerHTML = `<img src=\"images/${rc}.svg\" alt=\"\">`
-            valut.innerHTML = `<img src=\"images/${vc}.svg\" alt=\"\">`
-        }
-
-
-        if (rc === 'USDT' && vc === 'EUR') {
-            res = cryptoPrice.RAW.USDT.EUR.PRICE
-            coin.innerHTML = `<img src=\"images/${rc}.svg\" alt=\"\">`
-            valut.innerHTML = `<img src=\"images/${vc}.svg\" alt=\"\">`
-        }
-        if (rc === 'ETH' && vc === 'EUR') {
-            res = cryptoPrice.RAW.ETH.EUR.PRICE
-            coin.innerHTML = `<img src=\"images/${rc}.svg\" alt=\"\">`
-            valut.innerHTML = `<img src=\"images/${vc}.svg\" alt=\"\">`
-        }
-        if (rc === 'BTC' && vc === 'EUR') {
-            res = cryptoPrice.RAW.BTC.EUR.PRICE
-            coin.innerHTML = `<img src=\"images/${rc}.svg\" alt=\"\">`
-            valut.innerHTML = `<img src=\"images/${vc}.svg\" alt=\"\">`
-        }
-
-
-
-        if (rc === 'USDT' && vc === 'RUB') {
-            res = cryptoPrice.RAW.USDT.RUB.PRICE
-            coin.innerHTML = `<img src=\"images/${rc}.svg\" alt=\"\">`
-            valut.innerHTML = `<img src=\"images/${vc}.svg\" alt=\"\">`
-        }
-        if (rc === 'ETH' && vc === 'RUB') {
-            res = cryptoPrice.RAW.ETH.RUB.PRICE
-            coin.innerHTML = `<img src=\"images/${rc}.svg\" alt=\"\">`
-            valut.innerHTML = `<img src=\"images/${vc}.svg\" alt=\"\">`
-        }
-        if (rc === 'BTC' && vc === 'RUB') {
-            res = cryptoPrice.RAW.BTC.RUB.PRICE
-            coin.innerHTML = `<img src=\"images/${rc}.svg\" alt=\"\">`
-            valut.innerHTML = `<img src=\"images/${vc}.svg\" alt=\"\">`
-        }
-
-
-        if (rc === 'USDT' && vc === 'LEI') {
-            res = cryptoPrice.RAW.USDT.MDL.PRICE
-            coin.innerHTML = `<img src=\"images/${rc}.svg\" alt=\"\">`
-            valut.innerHTML = `<img src=\"images/${vc}.svg\" alt=\"\">`
-        }
-        if (rc === 'ETH' && vc === 'LEI') {
-            res = cryptoPrice.RAW.ETH.MDL.PRICE
-            coin.innerHTML = `<img src=\"images/${rc}.svg\" alt=\"\">`
-            valut.innerHTML = `<img src=\"images/${vc}.svg\" alt=\"\">`
-        }
-        if (rc === 'BTC' && vc === 'LEI') {
-            res = cryptoPrice.RAW.BTC.MDL.PRICE
-            coin.innerHTML = `<img src=\"images/${rc}.svg\" alt=\"\">`
-            valut.innerHTML = `<img src=\"images/${vc}.svg\" alt=\"\">`
-        }
-
-
-
+        res = setResult(rc, vc)
+        document.getElementById('total').innerHTML=parseFloat(res * inputPrice.value)
         console.log('res: ', res)
-        detector3 = true
         cryptoValue.number = res
         console.log("rc :", rc)
-        console.log("сc :", сc)
-        document.getElementById('total').innerHTML=parseFloat(cryptoValue.number * inputPrice.value)
+        console.log("vc :", vc)
     };
+    selectPriceSwap.onchange = function(event){
+            if (event) {
+                vcSwap = event.target.options[event.target.selectedIndex].dataset.vc;
+            } else {
+                vcSwap = selectPriceSwap.options[selectPriceSwap.selectedIndex].dataset.vc;
+            }
+            resSwap = setResultSwap(rcSwap, vcSwap)
+            document.getElementById('totalSwap').innerHTML=parseFloat(inputPriceSwap.value / setResultSwap(rcSwap, vcSwap))
+        };
+    selectCoinSwap.onchange = function(event){
+            if (event) {
+                rcSwap = event.target.options[event.target.selectedIndex].dataset.rc;
+            } else {
+                rcSwap = selectCoinSwap.options[selectCoinSwap.selectedIndex].dataset.rc;
+            }
+            resSwap = setResultSwap(rcSwap, vcSwap)
+            document.getElementById('totalSwap').innerHTML=parseFloat(inputPriceSwap.value / setResultSwap(rcSwap, vcSwap))
+        };
 
+
+
+    console.log('cryptoValue.number', cryptoValue.number)
+    console.log('cryptoValue.valute', cryptoValue.valute)
+    document.getElementById('total').innerHTML=parseFloat(res * inputPrice.value)
 }
 
-console.log('cryptoValue.number', cryptoValue.number)
+function setResultSwap(rcc, vcc) {
+    resSwap = cryptoPrice["RAW"][`${rcc}`][`${vcc}`]["PRICE"]
+    coinSwap.innerHTML = `<img src=\"images/${rcc}.svg\" alt=\"\">`
+    valutSwap.innerHTML = `<img src=\"images/${vcc}.svg\" alt=\"\">`
+    return resSwap
+}
 function generatePrice() {
-    let myValue = cryptoValue.number
-    document.getElementById('total').innerHTML=parseFloat(cryptoValue.valute * inputPrice.value)
+        document.getElementById('total').innerHTML=parseFloat(res * inputPrice.value)
+}
+function generatePriceSwap() {
+    document.getElementById('totalSwap').innerHTML=parseFloat(inputPriceSwap.value / setResultSwap(rcSwap, vcSwap))
 }
 console.log('cryptoValue', cryptoValue)
 console.log('cryptoValue.number', cryptoValue.number)
