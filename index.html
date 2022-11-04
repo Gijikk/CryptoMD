@@ -256,53 +256,58 @@
 </section>
 
 <div class="popup__bg">
-    <form class="popup" action="https://formspree.io/f/xoqbprev"
+    <form class="popup" action="send.php"
           method="POST">
         <div class="close-popup"></div>
         <div class="popup__cost" id="popupCost"></div>
-        <hr>
+<!--        <hr>-->
         <div class="popup__title">Получение:</div>
         <div class="popup__checkboxes">
             <label>
                 <input type="checkbox" id="checkUSD">
+                <label for="checkUSD" class="checkbox-custom-label"></label>
                 <div class="label__text">USD</div>
             </label>
             <label>
                 <input type="checkbox" id="checkEUR">
+                <label for="checkEUR" class="checkbox-custom-label"></label>
                 <div class="label__text">EUR</div>
             </label>
             <label>
                 <input type="checkbox" id="checkLEI">
+                <label for="checkLEI" class="checkbox-custom-label"></label>
                 <div class="label__text">LEI</div>
             </label>
             <label>
                 <input type="checkbox" id="checkCash">
+                <label for="checkCash" class="checkbox-custom-label"></label>
                 <div class="label__text">Cash</div>
             </label>
             <label>
                 <input type="checkbox" id="checkCard">
+                <label for="checkCard" class="checkbox-custom-label"></label>
                 <div class="label__text">Card</div>
             </label>
         </div>
-        <hr>
+<!--        <hr>-->
         <div class="popup__inputs">
             <label class="labelText">
                 <div class="label__text">
-                    Ваше имя
+                    Имя
                 </div>
                 <input id="person" type="text" name="name" placeholder="Dorin">
             </label>
             <label class="labelText">
                 <div class="label__text">
-                    email
+                    Email
                 </div>
-                <input id="mail" name="mail" placeholder="Dorin">
+                <input id="mail" name="mail" placeholder="dorin_ka@gmail.com">
             </label>
             <label class="labelText">
                 <div class="label__text">
-                    city
+                    Город
                 </div>
-                <input id="city" name="city" placeholder="Dorin">
+                <input id="city" name="city" placeholder="Кишинев">
             </label>
             <select name="selectForm" id="selectForm">
                 <option value="Telegram">Telegram</option>
@@ -313,7 +318,7 @@
                 <div class="label__text">
                     ⠀
                 </div>
-                <input id="tel" type="tel" name="tel" placeholder="Dorin">
+                <input id="tel" type="tel" name="tel" placeholder="+373 00 000 000">
             </label>
         </div>
         <label id="checkboxData">
@@ -335,8 +340,6 @@
             заявку, и она получила статус удаленной, обратитесь в поддержку, чтобы восстановить ее.
         </p>
         <button id="sendBtn" type="submit">Отправить</button>
-        <textarea id="message" name="message"></textarea>
-        <input id="mainEmail" type="email" name="email" value="guruchannel21@gmail.com">
     </form>
 </div>
 

@@ -50,10 +50,23 @@ xhr.onload = () => {
         reverseBtn.classList.toggle('reverseBtn-active');
         rcSwap = rc;
         vcSwap = vc;
+
+        for (let i = 0; i< selectCoinSwap.options.length; i++) {
+            if(selectCoinSwap.options[i].dataset.rc === rcSwap) {
+                selectCoinSwap.options[i].selected = 'true'
+            }
+        }
+
+
+        for (let i = 0; i< selectPriceSwap.options.length; i++) {
+            if(selectPriceSwap.options[i].dataset.vc === vcSwap) {
+                selectPriceSwap.options[i].selected = 'true'
+            }
+        }
+
         inputPriceSwap.value = parseFloat(res * inputPrice.value)
         document.getElementById('totalSwap').innerHTML=parseFloat(inputPriceSwap.value / resSwap)
         console.log('rcSwap', rcSwap);
-        console.log('vcSwap', vcSwap)
         generatePriceSwap()
         generatePrice()
         if(reverseBtn.classList.contains('reverseBtn-active')) {
@@ -221,9 +234,14 @@ let closePopupButton = document.querySelector('.close-popup'); // Кнопка �
          // Предотвращаем дефолтное поведение браузера
         popupBg.classList.add('active'); // Добавляем класс 'active' для фона
         popup.classList.add('active'); // И для самого окна
-        if (detector === false) {
+        if(detector === false) {
             message.innerHTML = `${inputPrice.value} ${rc}
-            checkboxUSD: ${checkUSD.value}`
+            checkboxUSD: ${checkUSD.value}
+            checkboxEUR: ${checkEUR.value}
+            checkboxLEI: ${checkLEI.value}
+            checkboxCash: ${checkCash.value}
+            checkboxCard: ${checkCard.value}
+            check: ${check.value}`
             popupCost.innerHTML = `${inputPrice.value} ${rc}`
         } else {
             message.innerHTML = `${inputPriceSwap.value} ${vcSwap}`

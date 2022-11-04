@@ -184,9 +184,9 @@ input { /* 1 */
  */
 
 button,
-select { /* 1 */
-  text-transform: none;
-}
+//select { /* 1 */
+//  text-transform: none;
+//}
 
 /**
  * Correct the inability to style clickable types in iOS and Safari.
@@ -697,7 +697,18 @@ marquee {
      appearance: none;       /* Remove default arrow */
      //background-image: url('../images/SelectArrow.svg');   /* Add custom arrow */
      outline: none;
+     option {
+       padding: 16px;
+       gap: 4px;
 
+       width: 237px;
+       height: 56px;
+
+       /* Primary/4 */
+
+       background: #FFFFFF;
+       border-radius: 8px 8px 0px 0px;
+     }
    }
 
   }
@@ -908,7 +919,11 @@ marquee {
 #spriceSwap {
   display: none;
 }
-
+.popup__checkboxes {
+  label {
+    width: 80px;
+  }
+}
 
 .popup__bg {
   position: fixed;
@@ -975,7 +990,7 @@ marquee {
   }
   &__checkboxes {
     display: flex;
-    width: 264px;
+    width: 300px;
     flex-wrap: wrap;
     flex-direction: row;
   }
@@ -1062,6 +1077,103 @@ marquee {
 }
 
 
+
+
+
+input[type="checkbox"]:checked,
+input[type="checkbox"]:not(:checked),
+input[type="radio"]:checked,
+input[type="radio"]:not(:checked)
+{
+  position: absolute;
+  left: -9999px;
+}
+
+input[type="checkbox"]:checked + label,
+input[type="checkbox"]:not(:checked) + label,
+input[type="radio"]:checked + label,
+input[type="radio"]:not(:checked) + label {
+  display: inline-block;
+  position: relative;
+  padding-left: 28px;
+  line-height: 20px;
+  cursor: pointer;
+}
+
+input[type="checkbox"]:checked + label:before,
+input[type="checkbox"]:not(:checked) + label:before,
+input[type="radio"]:checked + label:before,
+input[type="radio"]:not(:checked) + label:before {
+  content: "";
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  width: 24px;
+  height: 24px;
+  border: 1px solid #dddddd;
+  background-color: #ffffff;
+  border-radius: 100%;
+}
+input[type="checkbox"]:checked + label:before {
+  content: "";
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  width: 24px;
+  height: 24px;
+  border: 1px solid $grey;
+  background-color: $grey;
+  border-radius: 100%;
+}
+input[type="checkbox"]:checked + label:before,
+input[type="checkbox"]:not(:checked) + label:before {
+  border-radius: 100%;
+}
+
+
+input[type="checkbox"]:checked + label:after,
+input[type="checkbox"]:not(:checked) + label:after,
+input[type="radio"]:checked + label:after,
+input[type="radio"]:not(:checked) + label:after {
+  content: "";
+  position: absolute;
+  -webkit-transition: all 0.2s ease;
+  -moz-transition: all 0.2s ease;
+  -o-transition: all 0.2s ease;
+  transition: all 0.2s ease;
+}
+
+input[type="checkbox"]:checked + label:after,
+input[type="checkbox"]:not(:checked) + label:after {
+  left: 5px;
+  top: 7px;
+  width: 12px;
+  height: 5px;
+  border-radius: 1px;
+  border-left: 3px solid #bafd02;
+  border-bottom: 4px solid #bafd02;
+  -webkit-transform: rotate(-45deg);
+  -moz-transform: rotate(-45deg);
+  -o-transform: rotate(-45deg);
+  -ms-transform: rotate(-45deg);
+  transform: rotate(-45deg);
+}
+
+
+
+input[type="checkbox"]:not(:checked) + label:after,
+input[type="radio"]:not(:checked) + label:after {
+  opacity: 0;
+}
+
+input[type="checkbox"]:checked + label:after,
+input[type="radio"]:checked + label:after {
+  opacity: 1;
+}
+
+#check {
+  position: static;
+}
 .popup textarea {
   resize: none;
   width: 100%;
@@ -1080,6 +1192,7 @@ marquee {
   flex-direction: row;
   justify-content: center;
   align-items: center;
+  border-style: none;
   padding: 16px 32px;
   width: 163px;
   height: 50px;
@@ -1187,10 +1300,13 @@ marquee {
 }
 .feedbacks {
   display: flex;
+  overflow-x: auto;
   .feedback {
     margin-right: 12px;
     margin-left: 12px;
   }
+
+  padding-bottom: 20px;
 }
 .feed-title {
   font-family: 'Russo One';
@@ -1202,10 +1318,32 @@ marquee {
   align-items: center;
   letter-spacing: -0.02em;
   margin: 0 auto;
-  margin-bottom: 16px;
+  //margin-bottom: 16px;
   color: white;
   width: fit-content;
   span {
     color: $green;
   }
+
+  margin-bottom: 125px;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: $grey;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #7D7D7D;
+  border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
 }
