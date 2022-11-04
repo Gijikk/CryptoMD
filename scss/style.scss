@@ -399,7 +399,15 @@ body {
       transition: flex 0.3s ease;
       margin-right: 2px;
       margin-left: 2px;
+      .active {
+        background: $grey;
+        color: white;
+      }
       &:hover {
+        outline: 1px solid $green;
+        color: white;
+      }
+      &:active {
         background: $grey;
         color: white;
       }
@@ -709,6 +717,9 @@ marquee {
        background: #FFFFFF;
        border-radius: 8px 8px 0px 0px;
      }
+     &:hover {
+       cursor: pointer;
+     }
    }
 
   }
@@ -740,6 +751,12 @@ marquee {
       letter-spacing: -0.02em;
       color: #565555;
       border: none;
+      transition: .5s all;
+      &:hover {
+        color: white;
+        transition: .5s all;
+        outline: 1px solid $green;
+      }
     }
   }
   &__button {
@@ -769,6 +786,9 @@ marquee {
   }
   &__reverseBtn {
     display: flex;
+    &:hover {
+      cursor: pointer;
+    }
     button {
       background: transparent;
       border: none;
@@ -871,8 +891,15 @@ marquee {
         color: $grey;
       }
       a {
-        background: $grey;
-        color: $green;
+        background: $green;
+        color: $grey;
+        transition: .5s all;
+        &:hover {
+          background: $grey;
+          color: $green;
+          outline: 1px solid $green;
+          transition: .5s all;
+        }
       }
     }
     img {
@@ -896,6 +923,13 @@ marquee {
       font-size: 18px;
       line-height: 18px;
       color: #1F1F1F;
+      transition: .5s all;
+      &:hover {
+        background: $grey;
+        color: $green;
+        outline: 1px solid $green;
+        transition: .5s all;
+      }
     }
   }
   &__name {
@@ -918,6 +952,7 @@ marquee {
 }
 #spriceSwap {
   display: none;
+
 }
 .popup__checkboxes {
   label {
@@ -1128,6 +1163,9 @@ input[type="checkbox"]:checked + label:before {
 input[type="checkbox"]:checked + label:before,
 input[type="checkbox"]:not(:checked) + label:before {
   border-radius: 100%;
+  &:hover {
+    border: 1px solid $green;
+  }
 }
 
 
@@ -1141,6 +1179,9 @@ input[type="radio"]:not(:checked) + label:after {
   -moz-transition: all 0.2s ease;
   -o-transition: all 0.2s ease;
   transition: all 0.2s ease;
+  &:hover {
+    border: 1px solid $green;
+  }
 }
 
 input[type="checkbox"]:checked + label:after,
@@ -1157,6 +1198,9 @@ input[type="checkbox"]:not(:checked) + label:after {
   -o-transform: rotate(-45deg);
   -ms-transform: rotate(-45deg);
   transform: rotate(-45deg);
+  &:hover {
+    border: 1px solid $green;
+  }
 }
 
 
@@ -1207,11 +1251,17 @@ input[type="radio"]:checked + label:after {
   font-size: 18px;
   line-height: 18px;
 }
-
-.popup button:hover {
-  background: #fff;
-  color:#2982ff;
+#tradeButton:hover {
+  background: transparent;
+  color: $green;
   transition: 0.5s all;
+  border: 1px solid $green;
+}
+.popup button:hover {
+  background: transparent;
+  color: $green;
+  transition: 0.5s all;
+  border: 1px solid $green;
 }
 
 #selectForm {

@@ -351,7 +351,15 @@ body {
   margin-right: 2px;
   margin-left: 2px;
 }
+.header__links li .active {
+  background: #1F1F1F;
+  color: white;
+}
 .header__links li:hover {
+  outline: 1px solid #bafd02;
+  color: white;
+}
+.header__links li:active {
   background: #1F1F1F;
   color: white;
 }
@@ -643,6 +651,9 @@ marquee {
   background: #FFFFFF;
   border-radius: 8px 8px 0px 0px;
 }
+.calculator__select select:hover {
+  cursor: pointer;
+}
 .calculator__descr {
   color: white;
   font-family: "Inter";
@@ -670,6 +681,12 @@ marquee {
   letter-spacing: -0.02em;
   color: #565555;
   border: none;
+  transition: 0.5s all;
+}
+.calculator__input input:hover {
+  color: white;
+  transition: 0.5s all;
+  outline: 1px solid #bafd02;
 }
 .calculator__button {
   display: flex;
@@ -696,6 +713,9 @@ marquee {
 }
 .calculator__reverseBtn {
   display: flex;
+}
+.calculator__reverseBtn:hover {
+  cursor: pointer;
 }
 .calculator__reverseBtn button {
   background: transparent;
@@ -796,8 +816,15 @@ marquee {
   color: #1F1F1F;
 }
 .contacts__messenger:nth-child(2) a {
+  background: #bafd02;
+  color: #1F1F1F;
+  transition: 0.5s all;
+}
+.contacts__messenger:nth-child(2) a:hover {
   background: #1F1F1F;
   color: #bafd02;
+  outline: 1px solid #bafd02;
+  transition: 0.5s all;
 }
 .contacts__messenger img {
   margin-bottom: 8px;
@@ -818,6 +845,13 @@ marquee {
   font-size: 18px;
   line-height: 18px;
   color: #1F1F1F;
+  transition: 0.5s all;
+}
+.contacts__messenger a:hover {
+  background: #1F1F1F;
+  color: #bafd02;
+  outline: 1px solid #bafd02;
+  transition: 0.5s all;
 }
 .contacts__name {
   margin-bottom: 24px;
@@ -1043,6 +1077,10 @@ input[type=checkbox]:checked + label:before,
 input[type=checkbox]:not(:checked) + label:before {
   border-radius: 100%;
 }
+input[type=checkbox]:checked + label:before:hover,
+input[type=checkbox]:not(:checked) + label:before:hover {
+  border: 1px solid #bafd02;
+}
 
 input[type=checkbox]:checked + label:after,
 input[type=checkbox]:not(:checked) + label:after,
@@ -1054,6 +1092,12 @@ input[type=radio]:not(:checked) + label:after {
   -moz-transition: all 0.2s ease;
   -o-transition: all 0.2s ease;
   transition: all 0.2s ease;
+}
+input[type=checkbox]:checked + label:after:hover,
+input[type=checkbox]:not(:checked) + label:after:hover,
+input[type=radio]:checked + label:after:hover,
+input[type=radio]:not(:checked) + label:after:hover {
+  border: 1px solid #bafd02;
 }
 
 input[type=checkbox]:checked + label:after,
@@ -1070,6 +1114,10 @@ input[type=checkbox]:not(:checked) + label:after {
   -o-transform: rotate(-45deg);
   -ms-transform: rotate(-45deg);
   transform: rotate(-45deg);
+}
+input[type=checkbox]:checked + label:after:hover,
+input[type=checkbox]:not(:checked) + label:after:hover {
+  border: 1px solid #bafd02;
 }
 
 input[type=checkbox]:not(:checked) + label:after,
@@ -1118,10 +1166,18 @@ input[type=radio]:checked + label:after {
   line-height: 18px;
 }
 
-.popup button:hover {
-  background: #fff;
-  color: #2982ff;
+#tradeButton:hover {
+  background: transparent;
+  color: #bafd02;
   transition: 0.5s all;
+  border: 1px solid #bafd02;
+}
+
+.popup button:hover {
+  background: transparent;
+  color: #bafd02;
+  transition: 0.5s all;
+  border: 1px solid #bafd02;
 }
 
 #selectForm {

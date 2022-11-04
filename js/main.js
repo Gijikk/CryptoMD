@@ -277,7 +277,7 @@ jQuery(document).ready(function () {
         var form = jQuery(this).closest('form');
 
         if ( form.valid() ) {
-            form.css('opacity','.5');
+            // form.css('opacity','.5');
             var actUrl = form.attr('action');
 
             jQuery.ajax({
@@ -296,8 +296,8 @@ jQuery(document).ready(function () {
                 }
             });
         }
+
     });
 
 
 });
-
