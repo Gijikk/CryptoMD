@@ -235,7 +235,7 @@ let closePopupButton = document.querySelector('.close-popup'); // Кнопка �
         popupBg.classList.add('active'); // Добавляем класс 'active' для фона
         popup.classList.add('active'); // И для самого окна
         if(detector === false) {
-            message.innerHTML = `${inputPrice.value} ${rc}
+            var message = `${inputPrice.value} ${rc}
             checkboxUSD: ${checkUSD.value}
             checkboxEUR: ${checkEUR.value}
             checkboxLEI: ${checkLEI.value}
@@ -244,7 +244,7 @@ let closePopupButton = document.querySelector('.close-popup'); // Кнопка �
             check: ${check.value}`
             popupCost.innerHTML = `${inputPrice.value} ${rc}`
         } else {
-            message.innerHTML = `${inputPriceSwap.value} ${vcSwap}`
+            // message.innerHTML = `${inputPriceSwap.value} ${vcSwap}`
             popupCost.innerHTML = `${inputPriceSwap.value} ${vcSwap}`
         }
 
