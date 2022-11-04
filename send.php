@@ -1,44 +1,23 @@
 <?php
+$name = $_POST['name'];
+$phone = $_POST['tel'];
+$city = $_POST['city'];
+$email = $_POST['email'];
 
-ini_set('display_errors','On');
-error_reporting('E_ALL');
+$to = "passionary003@gmail.com";
+$date = date ("d.m.Y");
+$time = date ("h:i");
+$from = $email;
+$subject = "Заявка c сайта";
 
-$to = 'passionary003@gmail.com'; //Адреса, куда будут приходить письма. две почты указываем через запятую
-$sitename = $_SERVER['SERVER_NAME'];
 
-if (isset($_POST['phone']) && !empty($_POST['phone']))
-{
-    $phone  = strip_tags($_POST['phone']);
-    $name  = strip_tags($_POST['name']);
-    $email  = strip_tags($_POST['email']);
-    $message  = strip_tags($_POST['message']);
+$msg="
+    Имя: $name /n
+    City: $city /n
+    Телефон: $phone /n
+    Почта: $email";
+mail($to, $subject, $msg, "From: $from ");
 
-// Формирование заголовка письма
-    $subject  = "[Zajavka s sajta ".$sitename."]";
-    $headers  = "From: mail@".$sitename." \r\n";
-    $headers .= "MIME-Version: 1.0\r\n";
-    $headers .= "Content-Type: text/html;charset=utf-8 \r\n";
-// Формирование тела письма
-    $msg  = "<html><body style='font-family:Arial,sans-serif;'>";
-    $msg .= "<h2 style='font-weight:bold;border-bottom:1px dotted #ccc;'>Новая заявка:</h2>\r\n";
-    if(isset($_POST['name']) && !empty($_POST['name'])){
-        $msg .= "<p><strong>Имя:</strong> ".$name."</p>\r\n";
-    }
-    if(isset($_POST['phone']) && !empty($_POST['phone'])){
-        $msg .= "<p><strong>Телефон:</strong> ".$phone."</p>\r\n";
-    }
-    if(isset($_POST['email']) && !empty($_POST['email'])){
-        $msg .= "<p><strong>E-mail:</strong> ".$email."</p>\r\n";
-    }
-    if(isset($_POST['message']) && !empty($_POST['message'])){
-        $msg .= "<p><strong>Сообщение:</strong> ".$message."</p>\r\n";
-    }
-    $msg .= "</body></html>";
-// отправка сообщения
-    mail($to, $subject, $msg, $headers);
-}
-else
-{
-    echo "Заявка не отправлена :(";
-}
 ?>
+
+<p>Привет, форма отправлена</p>
