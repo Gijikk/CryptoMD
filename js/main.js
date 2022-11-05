@@ -1,3 +1,25 @@
+el=document.querySelector('.header__links').getElementsByTagName('li');
+
+var url=document.location.pathname.slice(10);
+console.log(url)
+for(var i=0;i<el.length; i++){
+
+    if (url=='index.html'){
+        el[0].style.background = '#1F1F1FFF'
+        el[0].style.color = 'white'
+    }
+    if (url=='contacts.html'){
+        el[1].style.background = '#1F1F1FFF'
+        el[1].style.color = 'white'
+    }
+    if (url=='feedbacks.html'){
+        el[2].style.background = '#1F1F1FFF'
+        el[2].style.color = 'white'
+    }
+
+}
+
+
 document.querySelector('.header__button').addEventListener('click', function () {
     document.querySelector('.header__button').classList.toggle('headerBtn-active');
     if(document.querySelector('.header__button').classList.contains('headerBtn-active')) {
@@ -64,8 +86,8 @@ xhr.onload = () => {
             }
         }
 
-        inputPriceSwap.value = parseFloat(res * inputPrice.value)
-        document.getElementById('totalSwap').innerHTML=parseFloat(inputPriceSwap.value / resSwap)
+        // inputPriceSwap.value = parseFloat(res * inputPrice.value)
+        // document.getElementById('totalSwap').innerHTML=parseFloat(inputPriceSwap.value / resSwap)
         console.log('rcSwap', rcSwap);
         generatePriceSwap()
         generatePrice()
@@ -161,7 +183,7 @@ xhr.onload = () => {
             vc = selectPrice.options[selectPrice.selectedIndex].dataset.vc;
         }
         res = setResult(rc, vc)
-        document.getElementById('total').innerHTML=parseFloat(res * inputPrice.value)
+        generatePrice()
         console.log('res: ', res)
         cryptoValue.valute = res
         console.log("rc :", rc)
@@ -174,7 +196,7 @@ xhr.onload = () => {
             rc = selectCoin.options[selectCoin.selectedIndex].dataset.rc;
         }
         res = setResult(rc, vc)
-        document.getElementById('total').innerHTML=parseFloat(res * inputPrice.value)
+        generatePrice()
         console.log('res: ', res)
         cryptoValue.number = res
         console.log("rc :", rc)
@@ -187,7 +209,7 @@ xhr.onload = () => {
                 vcSwap = selectPriceSwap.options[selectPriceSwap.selectedIndex].dataset.vc;
             }
             resSwap = setResultSwap(rcSwap, vcSwap)
-            document.getElementById('totalSwap').innerHTML=parseFloat(inputPriceSwap.value / setResultSwap(rcSwap, vcSwap))
+        generatePriceSwap()
         };
     selectCoinSwap.onchange = function(event){
             if (event) {
@@ -196,8 +218,8 @@ xhr.onload = () => {
                 rcSwap = selectCoinSwap.options[selectCoinSwap.selectedIndex].dataset.rc;
             }
             resSwap = setResultSwap(rcSwap, vcSwap)
-            document.getElementById('totalSwap').innerHTML=parseFloat(inputPriceSwap.value / setResultSwap(rcSwap, vcSwap))
-        };
+            generatePriceSwap()
+             };
 
 
 
@@ -213,10 +235,52 @@ function setResultSwap(rcc, vcc) {
     return resSwap
 }
 function generatePrice() {
+    let inp = parseFloat(inputPrice.value)
+    console.log('IV: ',inp)
+    console.log(rc)
+
+    if (rc === 'USDT' && vc === 'USD') {
+        if (inp <= 500 && inp > 0) {
+            console.log('1')
+            document.getElementById('total').innerHTML=res * inp - ((inp /100) * 5)
+        }
+        if (inp > 500 && inp <= 1000) {
+            console.log('2')
+            document.getElementById('total').innerHTML=res * inp - ((inp /100) * 3)
+        }
+        if (inp > 1000 && inp <= 10000) {
+            console.log('3')
+            document.getElementById('total').innerHTML=res * inp - ((inp /100) * 1.5)
+        }
+    }
+    else {
+        console.log('4')
         document.getElementById('total').innerHTML=parseFloat(res * inputPrice.value)
+    }
 }
 function generatePriceSwap() {
-    document.getElementById('totalSwap').innerHTML=parseFloat(inputPriceSwap.value / setResultSwap(rcSwap, vcSwap))
+    let inp = inputPriceSwap.value
+    let coinRes = inp / setResultSwap(rcSwap, vcSwap)
+    if (rcSwap === 'USDT' && vcSwap === 'USD') {
+        if (coinRes <= 500 && coinRes > 0) {
+            console.log('11')
+            document.getElementById('totalSwap').innerHTML=coinRes + ((coinRes /100) * 5)
+        }
+        if (coinRes > 500 && coinRes <= 1000) {
+            console.log('22')
+            document.getElementById('totalSwap').innerHTML=coinRes + ((coinRes /100) * 3)
+        }
+        if (coinRes > 1000 && coinRes <= 10000) {
+            console.log('33')
+            document.getElementById('totalSwap').innerHTML=coinRes + ((coinRes /100) * 1.5)
+        }
+    }
+    else {
+        console.log('44')
+        document.getElementById('totalSwap').innerHTML=parseFloat(coinRes)
+    }
+
+
 }
 console.log('cryptoValue', cryptoValue)
 console.log('cryptoValue.number', cryptoValue.number)
@@ -267,13 +331,13 @@ xhr.send(null);
 
 
 
-
 jQuery(document).ready(function () {
 
-    $(".tel").mask("+7 (99) 999-99-99");
+    $(".tel").mask("+373 (99) 999-999");
 
 
     jQuery('.send-form').click( function() {
+
         var form = jQuery(this).closest('form');
 
         if ( form.valid() ) {
